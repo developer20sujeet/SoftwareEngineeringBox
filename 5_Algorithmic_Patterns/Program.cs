@@ -2,4 +2,5 @@
 Console.WriteLine("Hello, World!");
 
 
-new Solution().TwoSum(new int[] { 2, 7, 11, 15 }, 9);
+//new Solution().TwoSum(new int[] { 2, 7, 11, 15 }, 9);
+
