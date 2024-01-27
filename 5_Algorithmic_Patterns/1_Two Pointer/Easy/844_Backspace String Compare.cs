@@ -23,43 +23,79 @@ public partial class Solution
 		5. Return True if All Characters are Processed: The final condition checks if both pointers have gone past the start of their respective strings. If so, it means all characters (considering backspaces) matched, and the function returns true. If the loop is exited early due to a mismatch or if one string is processed completely before the other, it returns false.
 			
 	*/
+
+	/// <summary>
+	/// Compares two strings, taking into account backspaces ('#').
+	/// Time Complexity: O(N + M), where N and M are the lengths of the input strings.
+	/// Space Complexity: O(1), as no additional space is used.
+	/// Algorithm: Two Pointer Approach.
+	/// Data Structure: Strings.
+	/// Company: Common in coding interviews (specific company not mentioned in LeetCode).
+	/// Tips: Keep track of backspaces and skip characters accordingly.
+	/// Lessons Learned: Understanding the effect of backspaces on string comparison.
+	/// </summary>
+	/// <param name="s">First input string.</param>
+	/// <param name="t">Second input string.</param>
+	/// <returns>True if the strings are equal after applying backspace operations; otherwise, false.</returns>
 	public bool BackspaceCompare(string s, string t)
 	{
-		int i = s.Length - 1, j = t.Length - 1;
+		// First - In Backspace problem , you start processing from end 
+		// Second - Crucial and Key - anytime if any position character do not match it is not same -
+		// Protips - S= abc##t , T= adc##u - this is not same as last charcater is not matching and same apply to middle and start charctaer also 
 
-		//# backspace counter
-		int sCounter = 0, tCounter = 0;
+		// Third - you need inner while loop to pocess repetative and continous ## backspace 
+		// Fourth - plan is to keep ## counter incrementing and skip valid character for each # counter
 
-		while (i >= 0 || j >= 0)
+
+		// Initialize pointers for both strings
+		int sLength = s.Length - 1;
+		int tLength = t.Length - 1;
+
+		// Counters for backspaces
+		int sCounter = 0;
+		int tCounter = 0;
+
+		// Process characters from the end using two pointers
+		while (sLength >= 0 || tLength >= 0)
 		{
-			while (i >= 0 && (s[i] == '#' || sCounter > 0))
+			// Process continuous backspaces for string s
+			// Third - you need inner while loop to pocess repetative and continous ## backspace 
+			// Crucial - && (s[sLength] == '#' || sCounter > 0) 
+			while (sLength >= 0 && (s[sLength] == '#' || sCounter > 0))
 			{
-				if (s[i] == '#')
-					sCounter++;
-				else
-					sCounter--;
+				if (s[sLength] == '#')
+				{
+					sCounter++; // Increase counter for each backspace
+				}
+				else if (sCounter > 0)
+				{
+					sCounter--; // Skip a character for each backspace
+				}
 
-				i--;
+				// in both case string is getting consumed and processed - t[j] == '#' for deleting and tCounter > 0 for skipping ,
+				sLength--; // Move to the previous character
 			}
 
-			while (j >= 0 && (t[j] == '#' || tCounter > 0))
+			// Process continuous backspaces for string t
+			while (tLength >= 0 && (t[tLength] == '#' || tCounter > 0))
 			{
-				if (t[j] == '#')
-					tCounter++;
-				else
-					tCounter--;
-
-				// in both case string is getting consumed and processed - t[j] == '#' for deleting and tCounter > 0 for skipping , 
-				j--;
+				if (t[tLength] == '#')
+				{
+					tCounter++; // Increase counter for each backspace
+				}
+				else if (tCounter > 0)
+				{
+					tCounter--; // Skip a character for each backspace
+				}
+				tLength--; // Move to the previous character
 			}
 
-			// the very crucial point - after string is processed above if s[i] != t[j] it means there is mismatch
-			// Example s= ab#c , t ad#c
-			if (i >= 0 && j >= 0 && s[i] == t[j])
+			// Check if current characters are equal
+			if (sLength >= 0 && tLength >= 0 && s[sLength] == t[tLength])
 			{
 				// This moves the pointers for the next round of comparison.
-				i--;
-				j--;
+				sLength--; // Move to the previous character in s
+				tLength--; // Move to the previous character in t
 			}
 			else
 			{
@@ -68,12 +104,12 @@ public partial class Solution
 					One or both pointers move past the beginning of their strings (i < 0 || j < 0), meaning there are no more characters to compare, or
 					The characters at the current positions are not equal (s[i] != t[j]), indicating a mismatch between the two strings.
 				*/
-				break;
+				break; // Characters are not equal, or one string is fully processed
 			}
 		}
 
-		// all charater got processed. If all character is not processed then it means there was mismatch
-		return i < 0 && j < 0;
+		// Check if both strings are fully processed and equal
+		return sLength < 0 && tLength < 0;
 	}
 
 	#endregion
