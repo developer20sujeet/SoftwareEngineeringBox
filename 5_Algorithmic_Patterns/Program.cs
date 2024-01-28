@@ -30,44 +30,44 @@ public partial class Solution
 
         //Two Pointer Approach 
         // process till all charctaer in string is processed 
-        while (sLength >=0 && tLength >=0 )
+        while (sLength >= 0 && tLength >= 0)
         {
-            
+
             // Third - you need inner while loop to pocess repetative and continous ## backspace 
-            while(sLength>=0)
+            while (sLength >= 0)
             {
 
-                if(s[sLength].ToString() == "#")
+                if (s[sLength].ToString() == "#")
                 {
                     sCounter++; // increase for each # counter 
                 }
-                else if(sCounter >0 )
+                else if (sCounter > 0)
                 {
-                     sCounter--; // skipp valid charcater for each # counter 
+                    sCounter--; // skipp valid charcater for each # counter 
                 }
 
             }
 
-             // Third - you need inner while loop to pocess repetative and continous ## backspace 
-            while(tLength>=0)
+            // Third - you need inner while loop to pocess repetative and continous ## backspace 
+            while (tLength >= 0)
             {
 
-                if(t[tLength].ToString() == "##")
+                if (t[tLength].ToString() == "##")
                 {
                     tCounter++; // increase for each # counter 
                 }
-                else if(tLength >0 )
+                else if (tLength > 0)
                 {
-                     tCounter--; // skipp valid charcater for each # counter 
+                    tCounter--; // skipp valid charcater for each # counter 
                 }
-                
+
             }
-            
+
 
 
             // Prepare for next iteration 
             // Crucial and condition to stop 
-            if(sLength >=0 && tLength >=0 && (s[sLength] == t[tLength]) )
+            if (sLength >= 0 && tLength >= 0 && (s[sLength] == t[tLength]))
             {
                 sLength--;
                 tLength--;
@@ -75,7 +75,7 @@ public partial class Solution
             else
             {
                 // Crucial and condition to stop 
-              break;
+                break;
             }
 
 
