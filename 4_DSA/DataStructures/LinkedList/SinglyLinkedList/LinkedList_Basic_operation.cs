@@ -2,8 +2,8 @@ using System;
 // Basic LinkedList class representation 
 class Node
 {
-   public int data;
-   public Node? next;
+    public int data;
+    public Node? next;
 
     public Node(int _data)
     {
@@ -32,7 +32,7 @@ public class LinkedList
 
         Node current = head;
 
-        for (int i = 2; i <=nodeCount; i++)
+        for (int i = 2; i <= nodeCount; i++)
         {
             Node newNode = new Node(i);
 
@@ -61,4 +61,32 @@ public class LinkedList
         }
 
     }
+
+    public void addLast(int data)
+    {
+
+        // if linkedlist is empty 
+        if (head == null)
+        {
+            Node node = new Node(data);
+
+            head = node;
+
+            return;
+
+        }
+
+        // we need to know the last node of linkedlist to add 
+        Node current = head;
+
+        while (current.next != null)
+        {
+            current = current.next;
+        }
+
+        Node node1 = new Node(data);
+
+        current.next = node1;
+    }
+
 }
