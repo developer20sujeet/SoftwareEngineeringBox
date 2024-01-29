@@ -5,3 +5,8 @@ LinkedList l = new LinkedList();
 
 l.MakeLinkedList(10);
 l.print();
+
+Console.WriteLine();
+
+l.addLast(11);
+l.print();
