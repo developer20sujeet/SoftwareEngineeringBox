@@ -2,8 +2,8 @@ using System;
 // Basic LinkedList class representation 
 class Node
 {
-    int data;
-    Node next;
+   public int data;
+   public Node? next;
 
     public Node(int _data)
     {
@@ -32,7 +32,7 @@ public class LinkedList
 
         Node current = head;
 
-        for (int i = 2; i < nodeCount; i++)
+        for (int i = 2; i <=nodeCount; i++)
         {
             Node newNode = new Node(i);
 
@@ -47,13 +47,13 @@ public class LinkedList
     {
         Node current = head;
 
-        while (current.next != null)
+        while (current != null)
         {
-            Console.Write(current.data)
+            Console.Write(current.data);
 
             if (current.next != null)
             {
-                Console.Write(">")
+                Console.Write(">");
             }
 
             current = current.next;

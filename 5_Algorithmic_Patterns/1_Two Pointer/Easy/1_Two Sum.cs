@@ -1,5 +1,5 @@
 
-public class Solution
+public partial class Solution
 {
 
 	#region Brute Force Solution

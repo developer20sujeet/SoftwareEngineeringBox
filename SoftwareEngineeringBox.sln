@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4_DSA", "4_DSA\4_DSA.csproj", "{155B983F-BA16-40A3-B452-0FB43576C665}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithmic_Patterns", "5_Algorithmic_Patterns\Algorithmic_Patterns.csproj", "{663F205B-3A9E-4419-B5BD-76B6351AAC23}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{155B983F-BA16-40A3-B452-0FB43576C665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{155B983F-BA16-40A3-B452-0FB43576C665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{155B983F-BA16-40A3-B452-0FB43576C665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{155B983F-BA16-40A3-B452-0FB43576C665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{663F205B-3A9E-4419-B5BD-76B6351AAC23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{663F205B-3A9E-4419-B5BD-76B6351AAC23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{663F205B-3A9E-4419-B5BD-76B6351AAC23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{663F205B-3A9E-4419-B5BD-76B6351AAC23}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
