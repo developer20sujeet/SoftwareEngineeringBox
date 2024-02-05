@@ -8,6 +8,10 @@
     int[] arr = {1, 2, 3};
     Solution solution = new Solution();
     solution.PrintContiguousSubarrays(arr);
+    right-left+1 
+     when right and left =0 then 1 
+     when r=1 left=0 then 2
+     when r=2 left =0 then 3
 
     Output 
     [1]

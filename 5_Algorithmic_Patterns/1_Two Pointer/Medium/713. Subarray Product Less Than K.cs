@@ -1,6 +1,14 @@
 
 
-public class Solution {
+public class Solution 
+{
+    /*
+     1. To solve this question you need to know 
+        1. What is subarray 
+        2. count all subarray 
+        3. The farmula = right - left +1 
+
+    */
     public int NumSubarrayProductLessThanK(int[] nums, int k) 
     {
        if (nums == null || nums.length == 0 || k == 0) 
@@ -45,7 +53,8 @@ public class Solution {
 
     The Sliding Window and Contiguous Subarrays
     When you're considering a window in the array from left to right where the product of all elements is less than k, 
-    every possible contiguous subarray that ends at right and starts anywhere between left and right (inclusive) also has a product less than k. This is because removing elements from the left does not increase the product.
+    every possible contiguous subarray that ends at right and starts anywhere between left and right (inclusive) also has a product less than k. 
+    This is because removing elements from the left does not increase the product.
 
 
     Consider nums = [10, 5, 2] with k = 100 and a current window from left = 0 to right = 2 (inclusive):
