@@ -23,7 +23,7 @@
 
 */
 
-public class Solution {
+public partial class Solution {
 
     // Method to print all contiguous subarrays of a given array
 

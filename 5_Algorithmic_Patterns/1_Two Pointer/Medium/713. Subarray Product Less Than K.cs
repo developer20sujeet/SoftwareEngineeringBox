@@ -1,6 +1,6 @@
 
 
-public class Solution 
+public partial class Solution 
 {
     /*
      1. To solve this question you need to know 
@@ -11,7 +11,7 @@ public class Solution
     */
     public int NumSubarrayProductLessThanK(int[] nums, int k) 
     {
-       if (nums == null || nums.length == 0 || k == 0) 
+       if (nums == null || nums.Length == 0 || k == 0) 
        {
             return 0;
        }
