@@ -37,3 +37,13 @@ partial class Solution
         }
     }
 }
+
+/* 5 row  9 column - 
+    *    
+   ***   
+  *****  
+******* 
+*********
+
+
+*/
