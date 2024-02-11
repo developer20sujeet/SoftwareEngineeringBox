@@ -1,6 +1,7 @@
 using System;
+using System.Transactions;
 
- #region  Structure of node
+#region  Structure of node
 
 // Node class representation
 class Node
@@ -31,7 +32,6 @@ public class LinkedList
 
         for (int i = 2; i <= nodeCount; i++)
         {
-            
             Node newNode = new(i);
 
             current.next = newNode;
@@ -59,7 +59,7 @@ public class LinkedList
 
     #endregion
 
-    #region  Addd
+    #region  addLast , AddFirst and AddNodeAtIndex
 
 
     public void addLast(int data)
@@ -88,7 +88,7 @@ public class LinkedList
     }
 
     // Time Complexity: O(1) - Because it adds the node at the beginning, the operation is constant time.</para>
-    // Space Complexity: O(1) - It uses a fixed amount of space for the new node.</para>    
+    // Space Complexity: O(1) - It uses a fixed amount of space for the new node.</para>
     public void AddFirst(int data)
     {
         // Step 1: Create a new node with the given data
@@ -109,7 +109,7 @@ public class LinkedList
         }
         // The new node is now the first node in the list
     }
-   
+
     public void AddNodeAtIndex(int index, int data)
     {
         if (index < 0)
@@ -148,24 +148,100 @@ public class LinkedList
         }
 
         // Insert the new node at the specified index
-        node.next = current.next; // forward from new node 
+        node.next = current.next; // forward from new node
         current.next = node; // forward from current node
     }
-    
+
+    #endregion
+
+
+    #region  deleteLast , Delete First , DeletAtIndex , DeleteNodeByValue
+
+    public void deleteFirst()
+    {
+        Node current = head;
+        head = current.next;
+    }
+
     #endregion
 
 
 
+    public static void Driver()
+    {
+        LinkedList myList = new LinkedList();
+        bool exit = false;
+
+        // Create a default linked list with 5 nodes and print it
+        Console.WriteLine("Creating a linked list with 5 nodes by default:");
+        myList.MakeLinkedList(5);
+        myList.print();
+        Console.WriteLine("\n---\n");
+
+        while (!exit)
+        {
+            Console.WriteLine("Select an operation to test:");
+            Console.WriteLine("1: Recreate and print LinkedList (5 nodes)");
+
+
+            Console.WriteLine("2: AddFirst and print");
+            Console.WriteLine("3: AddLast and print");
+            Console.WriteLine("4: AddNodeAtIndex and print");
+
+
+
+            Console.WriteLine("5: Exit");
 
 
 
 
 
+            Console.Write("Enter your choice: ");
+            string? input = Console.ReadLine();
+            int choice = int.TryParse(input, out choice) ? choice : 0;
 
+            switch (choice)
+            {
+                case 1:
+                    Console.WriteLine("Recreating a linked list with 5 nodes:");
+                    myList = new LinkedList(); // Reset the list
+                    myList.MakeLinkedList(5);
+                    myList.print();
+                    Console.WriteLine("\n");
+                    break;
+                case 2:
+                    Console.WriteLine("Adding 0 at the beginning:");
+                    myList = new LinkedList(); // Reset the list
+                    myList.MakeLinkedList(5); // Recreate the list for consistency
+                    myList.AddFirst(0);
+                    myList.print();
+                    Console.WriteLine("\n");
+                    break;
+                case 3:
+                    Console.WriteLine("Adding 6 at the end:");
+                    myList.addLast(6);
+                    myList.print();
+                    Console.WriteLine("\n");
+                    break;
+                case 4:
+                    Console.WriteLine("You have chosen to add a node at a specific index.Note : 0-based indexing");
+                    Console.Write("Enter the index where you want to add the node: ");
+                    int index = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter the value you want to add: ");
+                    int value = Convert.ToInt32(Console.ReadLine());
+                    myList.AddNodeAtIndex(index, value);
+                    myList.print();
+                    Console.WriteLine("\n");
+                    break;
+                case 5:
+                    exit = true;
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Please select a valid operation.\n");
+                    break;
+            }
+        }
+    }
 
-
-
-
-
-
+   
 }
