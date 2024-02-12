@@ -59,7 +59,7 @@ public class LinkedList
 
     #endregion
 
-    #region  addLast , AddFirst and AddNodeAtIndex
+    #region addLast , AddFirst and AddNodeAtIndex
 
 
     public void addLast(int data)
@@ -154,16 +154,136 @@ public class LinkedList
 
     #endregion
 
+    #region update
+
+    // Inside your LinkedList class
+    public void UpdateNodeAtIndex(int index, int newValue)
+    {
+        if (head == null || index < 0)
+            throw new IndexOutOfRangeException("Index out of range");
+
+        Node current = head;
+        for (int i = 0; current != null && i < index; i++)
+        {
+            current = current.next;
+        }
+
+        if (current == null)
+            throw new IndexOutOfRangeException("Index out of range");
+
+        current.data = newValue;
+    }
+
+    #endregion
 
     #region  deleteLast , Delete First , DeletAtIndex , DeleteNodeByValue
 
     public void deleteFirst()
     {
+        if (head != null)
+        {
+            head = head.next;
+        }
+
+        //Other way
+        // Node current = head;
+        // head = current.next;
+    }
+
+    public void deleteLast()
+    {
+        //where there is only one node in the linked list
+        if (head == null || head.next == null)
+        {
+            head = null;
+            return;
+        }
+
+        //if more than one node in linkedlist
+        //Simple trik - when you use current.next in while loop then you will stop at very last node ,
+        //so giving one extra .next like current.next.next will allow you to stop one node ahead of last node
+
         Node current = head;
-        head = current.next;
+        while (current.next.next != null)
+        {
+            current = current.next;
+        }
+
+        // the current pointer is staying at second last node
+        current.next = null;
+    }
+
+    public void deleteAtIndex(int index)
+    {
+        if (head == null || index < 0)
+            return;
+
+        // taking 0 based index like array
+        if (index == 0)
+        {
+            head = head.next;
+            return;
+        }
+
+        Node current = head;
+        for (int i = 0; current != null && i < index - 1; i++)
+        {
+            current = current.next;
+        }
+
+        if (current == null || current.next == null)
+            return;
+
+        // Tricks - traverse 1 less than deleting index = index-1 and skip (current.next.next) the deleting node
+        current.next = current.next.next;
+    }
+
+    public void deleteNodeByValue(int value)
+    {
+        if (head == null)
+            return;
+
+        // First Node deleting if value match
+        while (head != null && head.data == value)
+        {
+            head = head.next; // Move head if head node holds the value to delete
+        }
+
+        Node current = head;
+        while (current != null && current.next != null)
+        {
+            // delete all node with target value - only only just once
+            if (current.next.data == value)
+            {
+                // Skip over (current.next.next) the node to delete it, but don't advance current
+                // This way, current.next is now the new "next node", and we'll check it in the next iteration
+                current.next = current.next.next;
+            }
+            else
+            {
+                // Only advance current if we didn't delete the next node
+                current = current.next;
+            }
+
+            #region  to just delete first occurance of target value not all
+            // // to just delete first occurance of target value not all
+            // if (current.next.data == value)
+            // {
+            //     // Skip over (current.next.next) the node to delete it, but don't advance current
+            //     // This way, current.next is now the new "next node", and we'll check it in the next iteration
+            //     current.next = current.next.next;
+            //     break;
+            // }
+
+            // // Only advance current if we didn't delete the next node
+            // current = current.next;
+            #endregion
+        }
     }
 
     #endregion
+
+
 
 
 
@@ -173,28 +293,40 @@ public class LinkedList
         bool exit = false;
 
         // Create a default linked list with 5 nodes and print it
-        Console.WriteLine("Creating a linked list with 5 nodes by default:");
+        Console.WriteLine("============================================");
+        Console.WriteLine("Default LinkedList Creation (5 nodes)");
+        Console.WriteLine("============================================");
         myList.MakeLinkedList(5);
         myList.print();
-        Console.WriteLine("\n---\n");
+        Console.WriteLine("\n\n");
 
         while (!exit)
         {
-            Console.WriteLine("Select an operation to test:");
+            Console.WriteLine("============================================");
+            Console.WriteLine("LinkedList Operations Menu");
+            Console.WriteLine("============================================");
             Console.WriteLine("1: Recreate and print LinkedList (5 nodes)");
 
-
+            Console.WriteLine();
+            Console.WriteLine("=============Add Operation===========================");
             Console.WriteLine("2: AddFirst and print");
             Console.WriteLine("3: AddLast and print");
             Console.WriteLine("4: AddNodeAtIndex and print");
 
+            Console.WriteLine();
+            Console.WriteLine("==============Delete Operation========================");
+            Console.WriteLine("5: DeleteFirst and print");
+            Console.WriteLine("6: DeleteLast and print");
+            Console.WriteLine("7: DeleteAtIndex and print");
+            Console.WriteLine("8: DeleteNodeByValue and print");
 
+            Console.WriteLine();
+            Console.WriteLine("==============Update Operation========================");
+            Console.WriteLine("9: Update Node at a Specific Index and print");
 
-            Console.WriteLine("5: Exit");
-
-
-
-
+            Console.WriteLine();
+            Console.WriteLine("11: Exit");
+            Console.WriteLine("============================================");
 
             Console.Write("Enter your choice: ");
             string? input = Console.ReadLine();
@@ -203,45 +335,73 @@ public class LinkedList
             switch (choice)
             {
                 case 1:
-                    Console.WriteLine("Recreating a linked list with 5 nodes:");
+                    Console.WriteLine("\n--- Recreating LinkedList with 5 Nodes ---");
                     myList = new LinkedList(); // Reset the list
                     myList.MakeLinkedList(5);
                     myList.print();
-                    Console.WriteLine("\n");
                     break;
                 case 2:
-                    Console.WriteLine("Adding 0 at the beginning:");
+                    Console.WriteLine("\n--- Adding Node at the Beginning ---");
                     myList = new LinkedList(); // Reset the list
                     myList.MakeLinkedList(5); // Recreate the list for consistency
                     myList.AddFirst(0);
                     myList.print();
-                    Console.WriteLine("\n");
                     break;
                 case 3:
-                    Console.WriteLine("Adding 6 at the end:");
+                    Console.WriteLine("\n--- Adding Node at the End ---");
                     myList.addLast(6);
                     myList.print();
-                    Console.WriteLine("\n");
                     break;
                 case 4:
-                    Console.WriteLine("You have chosen to add a node at a specific index.Note : 0-based indexing");
+                    Console.WriteLine("\n--- Adding Node at a Specific Index ---");
                     Console.Write("Enter the index where you want to add the node: ");
                     int index = Convert.ToInt32(Console.ReadLine());
                     Console.Write("Enter the value you want to add: ");
                     int value = Convert.ToInt32(Console.ReadLine());
                     myList.AddNodeAtIndex(index, value);
                     myList.print();
-                    Console.WriteLine("\n");
                     break;
                 case 5:
+                    Console.WriteLine("\n--- Deleting the First Node ---");
+                    myList.deleteFirst();
+                    myList.print();
+                    break;
+                case 6:
+                    Console.WriteLine("\n--- Deleting the Last Node ---");
+                    myList.deleteLast();
+                    myList.print();
+                    break;
+                case 7:
+                    Console.WriteLine("\n--- Deleting Node at a Specific Index ---");
+                    Console.Write("Enter the index of the node to delete: ");
+                    int indexToDelete = Convert.ToInt32(Console.ReadLine());
+                    myList.deleteAtIndex(indexToDelete);
+                    myList.print();
+                    break;
+                case 8:
+                    Console.WriteLine("\n--- Deleting Node by Value ---");
+                    Console.Write("Enter the value of the node to delete: ");
+                    int valueToDelete = Convert.ToInt32(Console.ReadLine());
+                    myList.deleteNodeByValue(valueToDelete);
+                    myList.print();
+                    break;
+                case 9:
+                    Console.WriteLine("\n--- Updating Node at a Specific Index ---");
+                    Console.Write("Enter the index of the node to update: ");
+                    int updateIndex = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter the new value for the node: ");
+                    int newValue = Convert.ToInt32(Console.ReadLine());
+                    myList.UpdateNodeAtIndex(updateIndex, newValue);
+                    myList.print();
+                    break;
+                case 10:
                     exit = true;
                     break;
                 default:
-                    Console.WriteLine("Invalid choice. Please select a valid operation.\n");
+                    Console.WriteLine("\nInvalid choice. Please select a valid operation.");
                     break;
             }
+            Console.WriteLine("\n");
         }
     }
-
-   
 }
