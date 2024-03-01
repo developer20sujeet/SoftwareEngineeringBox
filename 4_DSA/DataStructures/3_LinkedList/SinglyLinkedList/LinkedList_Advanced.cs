@@ -86,4 +86,68 @@ public partial class LinkedList
     }
 
     #endregion
+
+
+    #region Reverse
+
+    /// <summary>
+    /// Time Complexity: O(n), where n is the number of nodes in the linked list.
+    /// Space Complexity: O(1), as it uses a fixed amount of space.
+
+    /// Algorithm Used: Iterative approach.
+    /// Algorithmic Code Pattern: Two-Pointer Techniq
+    public Node ReverseLinkedList_iteratively()
+    {
+        Node prev = null;
+        Node current = head;
+        Node next = null;
+
+        while (current != null)
+        {
+            next = current.next; // Step 1: Save next
+            current.next = prev; // Step 2: Reverse the current node's pointer - mean current node next point to previous
+
+            prev = current; // Step 3: Move pointers one step forward
+            current = next; // No ready for next iteration
+        }
+
+        head = prev; // prev reached at very end of linkedlist Step 4: Change head to new head of the reversed list
+
+        return head;
+    }
+
+    //The idea behind recursion is to solve a problem by solving smaller instances of the same problem
+
+    /// Reverses a linked list recursively.
+    /// Time Complexity: O(n), where n is the number of nodes in the linked list.
+    /// Space Complexity: O(n), due to the recursion stack
+    
+    //the call stack frame
+    //execution context
+    
+    public Node ReverseLinkedList(Node head)
+    {
+        // Base case: if list is empty or has only one node
+        if (head == null || head.next == null)
+        {
+            return head;
+        }
+
+        // Recursive case: reverse the rest of the list
+        Node newHead = ReverseLinkedList(head.next);
+
+        // Rearrangement: point next node's next to current node
+        // Example if linkedList is 1>2>3>4 then 2.next = 3 and 2.next(3).next=2 so we moved pointer from 2 > 3 to 3>2
+        head.next.next = head;
+        head.next = null; // Set the original head's next to null
+
+        return newHead; // Return the new head of the reversed list
+    }
+
+
+    #endregion
+
+    
+
+
 }

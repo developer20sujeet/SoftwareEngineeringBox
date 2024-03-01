@@ -45,6 +45,11 @@ public partial class LinkedList
             Console.WriteLine("13: Duplicate Node in Cycle");
 
             Console.WriteLine();
+            Console.WriteLine("==============Reverse Operation========================");
+            Console.WriteLine("14: Iterative Reverse");
+            Console.WriteLine("15: Recursive Reverse");
+
+            Console.WriteLine();
             Console.WriteLine("99: Exit");
             Console.WriteLine("============================================");
 
@@ -161,7 +166,17 @@ public partial class LinkedList
                     else
                         Console.WriteLine("No cycle detected.");
                     break;
-                    
+
+                case 14:
+                    Node node = myList.ReverseLinkedList_iteratively();
+                    myList.print();
+                    break;
+
+                case 15:
+                    Node node1 = myList.ReverseLinkedList(myList.head);
+                    myList.print();
+                    break;
+
                 case 99:
                     exit = true;
                     break;
